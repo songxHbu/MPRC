@@ -300,7 +300,7 @@ class UserPopEncoder(nn.Module):
         return self.net(x)
 
 
-class AdaptivePopDebiasMMGCN(nn.Module):
+class AdaptivePopCalibratMMGCN(nn.Module):
     def __init__(self, data: ClothingInterData, args: argparse.Namespace, device: torch.device):
         super().__init__()
         self.args = args
@@ -535,7 +535,7 @@ def _rank_metrics_from_topk(topk_items: np.ndarray, positives: set, top_ks: Sequ
 
 @torch.no_grad()
 def evaluate_full_sort(
-    model: AdaptivePopDebiasMMGCN,
+    model: AdaptivePopCalibratMMGCN,
     data: ClothingInterData,
     split: str,
     beta: float,
@@ -619,7 +619,7 @@ def format_metrics(m: Dict[str, float], top_ks: Sequence[int]) -> str:
 
 
 def choose_beta(
-    model: AdaptivePopDebiasMMGCN,
+    model: AdaptivePopCalibratMMGCN,
     data: ClothingInterData,
     betas: Sequence[float],
     top_ks: Sequence[int],
@@ -655,7 +655,7 @@ def choose_beta(
 # ----------------------------- Training -----------------------------
 
 def train_one_epoch(
-    model: AdaptivePopDebiasMMGCN,
+    model: AdaptivePopCalibratMMGCN,
     loader: DataLoader,
     optimizer: torch.optim.Optimizer,
     args: argparse.Namespace,
@@ -762,7 +762,7 @@ def main() -> None:
     parser.add_argument("--beta_candidates", type=str, default="0,0.01,0.02,0.05,0.1,0.2")
     parser.add_argument("--beta_selection", type=str, default="accuracy", choices=["accuracy", "tradeoff"])
     parser.add_argument("--pop_penalty", type=float, default=0.20)
-    parser.add_argument("--save_path", type=str, default="./checkpoints/adaptive_pop_debias_best.pt")
+    parser.add_argument("--save_path", type=str, default="./checkpoints/adaptive_pop_Calibrat_best.pt")
 
     args = parser.parse_args()
     if args.image_feat_file.strip() == "":
@@ -786,7 +786,7 @@ def main() -> None:
     dataset = BPRDataset(data)
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, num_workers=0, pin_memory=(device.type == "cuda"))
 
-    model = AdaptivePopDebiasMMGCN(data, args, device).to(device)
+    model = AdaptivePopCalibratMMGCN(data, args, device).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     best_key = f"NDCG@{max(top_ks)}"
