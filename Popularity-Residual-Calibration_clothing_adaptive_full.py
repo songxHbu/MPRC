@@ -843,10 +843,10 @@ def main() -> None:
     print("\n================ Final Results ================")
     print(f"Best Valid(beta={best_beta:.3f}): {format_metrics(best_valid_metrics, top_ks) if best_valid_metrics else 'N/A'}")
     print(f"Final Raw Test(beta=0):        {format_metrics(test_raw, top_ks)}")
-    print(f"Final Debiased Test(beta={best_beta:.3f}): {format_metrics(test_deb, top_ks)}")
+    print(f"Final Test(beta={best_beta:.3f}): {format_metrics(test_deb, top_ks)}")
     print("\nNotes:")
     print("  Raw keeps the learned popularity/conformity residual.")
-    print("  Debiased subtracts beta * adaptive_gate * conformity_residual.")
+    print("  subtracts beta * adaptive_gate * conformity_residual.")
     print("  If beta=0 is selected, validation accuracy indicates that removing popularity hurts NDCG.")
     print("  Use --beta_selection tradeoff to prefer lower recommendation popularity with mild accuracy tradeoff.")
 
