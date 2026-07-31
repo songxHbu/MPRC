@@ -220,12 +220,6 @@ Final Raw Test(beta=0): HR@5=..., NDCG@5=... | HR@10=..., NDCG@10=... | ARP@10=.
 Final Test(beta=X.XXX): HR@5=..., NDCG@5=... | HR@10=..., NDCG@10=... | ARP@10=... | TAIL@10=...
 ```
 
-Raw inference retains the learned popularity/conformity residual. Calibrated inference subtracts:
-
-```text
-beta * adaptive_user_item_gate * conformity_residual
-```
-
 ## Paper-Oriented Experiment Scripts
 
 The additional files reproduce experiments that are not fully covered by the base training program.
