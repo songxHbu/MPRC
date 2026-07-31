@@ -2,7 +2,6 @@
 
 MPRC is a multimodal recommendation framework that separates collaborative preference, multimodal semantic preference, and popularity-associated signals. The repository contains the original training program and additional scripts for reproducing the paper's ablation, calibration, sensitivity, user-group, item-group, multi-seed, and case-study experiments.
 
-The original training file is kept unchanged. The additional experiment scripts dynamically import it and save their outputs to independent directories.
 
 ## Repository Naming Note
 
