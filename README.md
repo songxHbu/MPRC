@@ -112,7 +112,6 @@ MPRC/
 ├── run_paper_suite.py                         # multi-dataset experiment orchestrator
 ├── datasets.example.json                      # three-dataset example configuration
 ├── requirements.txt                           # complete Python dependencies
-├── ORIGINAL_SHA256.txt                        # checksum of the unchanged base script
 ├── README.md                                  # merged project documentation
 └── data/
     ├── Clothing/
