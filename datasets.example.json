@@ -1,0 +1,34 @@
+{
+  "device": "cuda",
+  "seed": 2024,
+  "seeds": "2024,2025,2026,2027,2028",
+  "common_overrides": {
+    "epochs": 300,
+    "batch_size": 2048,
+    "topks": "5,10",
+    "beta_candidates": "0,0.01,0.02,0.05,0.1,0.2"
+  },
+  "datasets": [
+    {
+      "name": "Clothing",
+      "data_path": "./data/Clothing",
+      "inter_file": "Copy of clothing.inter",
+      "text_feat_file": "Copy of text_feat.npy",
+      "image_feat_file": "Copy of image_feat.npy"
+    },
+    {
+      "name": "Sports",
+      "data_path": "./data/Sports",
+      "inter_file": "sports.inter",
+      "text_feat_file": "text_feat.npy",
+      "image_feat_file": "image_feat.npy"
+    },
+    {
+      "name": "Baby",
+      "data_path": "./data/Baby",
+      "inter_file": "baby.inter",
+      "text_feat_file": "text_feat.npy",
+      "image_feat_file": "image_feat.npy"
+    }
+  ]
+}
