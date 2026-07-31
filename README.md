@@ -130,7 +130,7 @@ MPRC/
 
 ## Main Training and Raw/Calibrated Evaluation
 
-The unchanged base script is the main training entry point. As delivered, reproduce the Clothing experiment with:
+The base script is the main training entry point. As delivered, reproduce the Clothing experiment with:
 
 ```bash
 python Popularity-Residual-Calibration_clothing_adaptive_full.py \
@@ -194,9 +194,8 @@ The main evaluation reports:
 - `NDCG@K`: position-aware ranking quality;
 - `ARP@K`: average normalized training popularity of recommended items;
 - `TAIL@K`: fraction of recommended items whose normalized training popularity is no greater than the 80th-percentile threshold;
-- `COV@K`: fraction of catalog items appearing in at least one recommendation list.
 
-Higher HR, NDCG, TAIL, and coverage are generally preferred, while lower ARP indicates less concentration on popular items. NDCG, ARP, and TAIL should be interpreted jointly because aggressive popularity suppression may reduce ranking quality.
+Higher HR, NDCG, and TAIL are generally preferred, while lower ARP indicates less concentration on popular items. NDCG, ARP, and TAIL should be interpreted jointly because aggressive popularity suppression may reduce ranking quality.
 
 ## Main Script Output
 
