@@ -8,14 +8,14 @@ MPRC is a multimodal recommendation framework that separates collaborative prefe
 In the delivered experiment package, the unchanged base training file is named:
 
 ```text
-2d932a83-daec-46d4-ac68-b3e11adf9bb4.py
+Popularity-Residual-Calibration_clothing_adaptive_full.py
 ```
 
-The specialized experiment scripts use this file by default. For a public repository, it may be renamed to `main.py` or `pop_debias_clothing_adaptive_full.py`. After renaming it, pass the new path through `--base_file`, for example:
+The specialized experiment scripts use this file by default. for example:
 
 ```bash
 python run_ablation_study.py \
-  --base_file ./main.py \
+  --base_file ./Popularity-Residual-Calibration_clothing_adaptive_full.py \
   ...
 ```
 
@@ -24,7 +24,7 @@ When using `run_paper_suite.py`, a renamed base file can be specified in `datase
 ```json
 {
   "common_overrides": {
-    "base_file": "./main.py"
+    "base_file": "./Popularity-Residual-Calibration_clothing_adaptive_full.py"
   }
 }
 ```
@@ -127,7 +127,7 @@ Convert raw interactions to the format described above and ensure that item IDs 
 
 ```text
 MPRC/
-├── 2d932a83-daec-46d4-ac68-b3e11adf9bb4.py  # unchanged base training script
+├── Popularity-Residual-Calibration_clothing_adaptive_full.py  # base training script
 ├── mprc_experiment_utils.py                   # shared experiment utilities
 ├── run_ablation_study.py                      # representation/calibration ablations
 ├── run_beta_sensitivity.py                    # beta sensitivity and plots
@@ -161,7 +161,7 @@ MPRC/
 The unchanged base script is the main training entry point. As delivered, reproduce the Clothing experiment with:
 
 ```bash
-python 2d932a83-daec-46d4-ac68-b3e11adf9bb4.py \
+python Popularity-Residual-Calibration_clothing_adaptive_full.py \
   --data_path ./data/Clothing \
   --inter_file clothing.inter \
   --text_feat_file text_feat.npy \
@@ -190,14 +190,6 @@ python 2d932a83-daec-46d4-ac68-b3e11adf9bb4.py \
   --beta_selection tradeoff \
   --pop_penalty 0.20 \
   --save_path ./checkpoints/Clothing_mprc_best.pt
-```
-
-After renaming the base script to `main.py`, the equivalent command starts with:
-
-```bash
-python main.py \
-  --data_path ./data/Clothing \
-  ...
 ```
 
 ## Key Arguments
@@ -312,12 +304,6 @@ python run_ablation_study.py \
   --dataset_name Clothing \
   --output_dir ./paper_results/ablation_clothing \
   --beta_selection tradeoff
-```
-
-If the base script has been renamed, add:
-
-```bash
---base_file ./main.py
 ```
 
 For nonstandard Clothing filenames, replace `clothing.inter`, `text_feat.npy`, and `image_feat.npy` with the actual names.
@@ -559,24 +545,6 @@ The specialized scripts cover experiments involving the MPRC model itself:
 - Head/Middle/Tail item groups;
 - repeated random seeds;
 - qualitative case studies.
-
-They do not implement external baselines such as LightGCN, LATTICE, BM3, DICE, or PPAC. Defensible external-baseline comparisons should use the methods' official implementations, the same interaction splits, the same candidate protocol, and independently validated hyperparameters.
-
-## Reproducibility Recommendations
-
-For final paper results:
-
-1. Use the same processed interactions and feature files for every method.
-2. Select beta and other hyperparameters only on the validation split.
-3. Evaluate the test split once after model selection.
-4. Report at least three random seeds; five seeds are preferable when computationally feasible.
-5. Report mean and standard deviation for the principal ranking and popularity metrics.
-6. Preserve the raw result files and command-line logs used to generate every table and figure.
-7. Ensure the ablation table uses raw inference for representation ablations and a shared calibrated protocol for calibration ablations.
-
-## License
-
-This project is licensed under the MIT License. Add the corresponding `LICENSE` file when publishing the repository.
 
 ## Contact
 
