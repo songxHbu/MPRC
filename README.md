@@ -363,6 +363,7 @@ The percentile thresholds can be configured using:
 ```bash
 --tail_quantile 0.80
 --head_quantile 0.95
+```
 
 ## Multi-Seed Experiments
 
