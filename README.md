@@ -3,32 +3,6 @@
 MPRC is a multimodal recommendation framework that separates collaborative preference, multimodal semantic preference, and popularity-associated signals. The repository contains the original training program and additional scripts for reproducing the paper's ablation, calibration, sensitivity, user-group, item-group, multi-seed, and case-study experiments.
 
 
-## Repository Naming Note
-
-In the delivered experiment package, the unchanged base training file is named:
-
-```text
-Popularity-Residual-Calibration_clothing_adaptive_full.py
-```
-
-The specialized experiment scripts use this file by default. for example:
-
-```bash
-python run_ablation_study.py \
-  --base_file ./Popularity-Residual-Calibration_clothing_adaptive_full.py \
-  ...
-```
-
-When using `run_paper_suite.py`, a renamed base file can be specified in `datasets.example.json` through `common_overrides`:
-
-```json
-{
-  "common_overrides": {
-    "base_file": "./Popularity-Residual-Calibration_clothing_adaptive_full.py"
-  }
-}
-```
-
 ## Environment Dependencies
 
 The code is intended for Python 3.8+ and PyTorch 1.12+.
