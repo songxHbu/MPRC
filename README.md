@@ -348,21 +348,21 @@ python run_item_group_analysis.py \
 
 ### Item Popularity Group Definition
 
-By default, item groups are constructed from normalized item popularity
-computed exclusively on the training split. Let \(q_{80}\) and \(q_{95}\)
-denote the 80th and 95th percentiles of training-set item popularity,
-respectively. Items are assigned as follows:
+Item groups are constructed using normalized item popularity computed **exclusively from the training split**.
 
-- Tail: \(p_i \leq q_{80}\);
-- Middle: \(q_{80} < p_i \leq q_{95}\);
-- Head: \(p_i > q_{95}\).
+Let `q80` and `q95` denote the 80th and 95th percentiles of training-set item popularity, respectively.
 
-The default thresholds can be changed through `--tail_quantile` and
-`--head_quantile`. Because item popularity values may contain ties, the
-resulting groups are not guaranteed to contain exactly 80%, 15%, and 5%
-of the items. The same training-only group definition must be applied to
-all compared methods and must remain consistent with the protocol
-reported in the final manuscript.
+| Group | Popularity range |
+|---|---|
+| **Tail** | `p_i <= q80` |
+| **Middle** | `q80 < p_i <= q95` |
+| **Head** | `p_i > q95` |
+
+The percentile thresholds can be configured using:
+
+```bash
+--tail_quantile 0.80
+--head_quantile 0.95
 
 ## Multi-Seed Experiments
 
