@@ -1,6 +1,5 @@
 # MPRC paper experiment scripts
 
-The original file `2d932a83-daec-46d4-ac68-b3e11adf9bb4.py` is copied into this folder **without modification**. All additional experiments dynamically import that file and write results to separate directories.
 
 ## Files
 
@@ -33,8 +32,6 @@ python run_ablation_study.py \
   --output_dir ./paper_results/ablation_clothing \
   --beta_selection tradeoff
 ```
-
-For your current filenames, replace `clothing.inter` with `Copy of clothing.inter` and feature names as needed.
 
 ## Beta sensitivity
 
@@ -118,7 +115,7 @@ Run the same commands with the corresponding dataset paths and interaction filen
 
 ## What these scripts do not reproduce
 
-The scripts cover experiments involving your MPRC model itself: Raw/Calibrated comparison, ablations, beta sensitivity, user/item groups, repeated seeds and case studies. They do not implement external baselines such as LightGCN, LATTICE, BM3, DICE or PPAC. Those methods require their own official implementations and preprocessing protocols for a defensible comparison.
+The scripts cover experiments involving your MPRC model itself: Raw/Calibrated comparison, ablations, beta sensitivity, user/item groups, repeated seeds and case studies.
 
 ## Run the complete suite for three datasets
 
