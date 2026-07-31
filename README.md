@@ -346,13 +346,23 @@ python run_item_group_analysis.py \
   --output_dir ./paper_results/item_groups_clothing
 ```
 
-The default boundaries are:
+### Item Popularity Group Definition
 
-- Tail: popularity no greater than the 80th percentile;
-- Middle: popularity between the 80th and 95th percentiles;
-- Head: popularity greater than the 95th percentile.
+By default, item groups are constructed from normalized item popularity
+computed exclusively on the training split. Let \(q_{80}\) and \(q_{95}\)
+denote the 80th and 95th percentiles of training-set item popularity,
+respectively. Items are assigned as follows:
 
-These thresholds are configurable and should be set to exactly match the final manuscript protocol.
+- Tail: \(p_i \leq q_{80}\);
+- Middle: \(q_{80} < p_i \leq q_{95}\);
+- Head: \(p_i > q_{95}\).
+
+The default thresholds can be changed through `--tail_quantile` and
+`--head_quantile`. Because item popularity values may contain ties, the
+resulting groups are not guaranteed to contain exactly 80%, 15%, and 5%
+of the items. The same training-only group definition must be applied to
+all compared methods and must remain consistent with the protocol
+reported in the final manuscript.
 
 ## Multi-Seed Experiments
 
